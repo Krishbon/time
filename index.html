@@ -165,7 +165,7 @@
         236: 'Central African Republic',
         235: 'Chad',
         269: 'Comoros',
-        225: 'Côte d\'Ivoire',
+        225: 'Côte d Ivoire',
         243: 'Democratic Republic of the Congo',
         253: 'Djibouti',
         20: 'Egypt',
@@ -447,8 +447,65 @@ return null;
 <form onsubmit="getCountryName(); return false;"> <!-- Prevent the default form submit action -->
 <h1>Phone Code or Country Name to Time</h1>
 <label for="input">Enter a phone code or a country name:</label>
-<input type="text" id="input" name="input" placeholder="e.g. 93 or India" />
+<input type="text" id="input" name="input" placeholder="e.g. 91 or India" />
 <p id="result"></p>
 </form>
+
+<!-- 2 page -->
+<h1>United States Timezones</h1>
+<label for="phoneCodeInput">Enter '1' to display all US timezones:</label>
+<input type="text" id="phoneCodeInput" name="phoneCodeInput" value="" maxlength="1">
+<div id="timeZones"></div>
+
+<script>
+    const timeZones = {
+        '425': 'Pacific Time (US & Canada)',
+        '415': 'Mountain Time (US & Canada)',
+        '315': 'Central Time (US & Canada)',
+        '235': 'Eastern Time (US & Canada)',
+    };
+
+    document.getElementById('phoneCodeInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            displayTimeZones();
+        }
+    });
+
+    function displayTimeZones() {
+        const phoneCodeInput = document.getElementById('phoneCodeInput');
+        const timeZonesDiv = document.getElementById('timeZones');
+
+        timeZonesDiv.innerHTML = '';
+
+        if (phoneCodeInput.value === '1') {
+            for (const [phoneCode, label] of Object.entries(timeZones)) {
+                const timeZoneDiv = document.createElement('div');
+                timeZoneDiv.innerHTML = `<strong>${label}</strong>: <span id="${phoneCode}Time"></span>`;
+                timeZonesDiv.appendChild(timeZoneDiv);
+
+                const timeZoneTime = document.getElementById(`${phoneCode}Time`);
+                updateTimeZoneTime(timeZoneTime, getTimeZoneOffset(label));
+            }
+        }
+    }
+
+    function getTimeZoneOffset(timeZone) {
+        switch (timeZone) {
+            case 'Pacific Time (US & Canada)': return -8;
+            case 'Mountain Time (US & Canada)': return -7;
+            case 'Central Time (US & Canada)': return -6;
+            case 'Eastern Time (US & Canada)': return -5;
+            default: return 0;
+        }
+    }
+
+    function updateTimeZoneTime(element, offset) {
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const newDate = new Date(utc + (3600000 * offset));
+
+        element.innerHTML = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+</script>
 </body>
 </html>
