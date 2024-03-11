@@ -3,29 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timezone Converter</title>
+<title>Time Zone Display</title>
 <script>
-function displayTime() {
+function updateTime() {
     var phoneCode = document.getElementById('phoneCode').value;
-    var timeString = '';
+    var timeDisplay = document.getElementById('timeDisplay');
+    var currentTime = new Date();
+    var options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+
     if(phoneCode === '1') {
-        timeString += 'EST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: true}) + '<br>';
-        timeString += 'CST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Chicago', hour12: true}) + '<br>';
-        timeString += 'MST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver', hour12: true}) + '<br>';
-        timeString += 'PST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', hour12: true});
+        timeDisplay.innerHTML = '<p>EST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/New_York', ...options}) + '</p>' +
+                                '<p>CST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Chicago', ...options}) + '</p>' +
+                                '<p>MST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Denver', ...options}) + '</p>' +
+                                '<p>PST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', ...options}) + '</p>';
     } else if(phoneCode === '44') {
-        timeString += 'UK Time: ' + new Date().toLocaleTimeString('en-GB', {timeZone: 'Europe/London', hour12: true});
+        timeDisplay.innerHTML = '<p>UK Time: ' + currentTime.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', ...options}) + '</p>';
     } else {
-        timeString = 'Please enter a valid phone code.';
+        timeDisplay.innerHTML = '<p>Please enter a valid phone code.</p>';
     }
-    document.getElementById('timeDisplay').innerHTML = timeString;
 }
 </script>
 </head>
 <body>
-<h2>Enter Phone Code to Display Time</h2>
-<input type="text" id="phoneCode" placeholder="Enter phone code (1 or 44)">
-<button onclick="displayTime()">Show Time</button>
-<p id="timeDisplay"></p>
+<h1>Time Zone Display</h1>
+<input type="text" id="phoneCode" placeholder="Enter phone code (e.g., 1 or 44)" oninput="updateTime()">
+<div id="timeDisplay"></div>
 </body>
 </html>
