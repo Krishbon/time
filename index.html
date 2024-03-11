@@ -9,12 +9,12 @@ function displayTime() {
     var phoneCode = document.getElementById('phoneCode').value;
     var timeString = '';
     if(phoneCode === '1') {
-        timeString += 'EST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/New_York'}) + '<br>';
-        timeString += 'CST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Chicago'}) + '<br>';
-        timeString += 'MST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver'}) + '<br>';
-        timeString += 'PST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles'});
+        timeString += 'EST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: true}) + '<br>';
+        timeString += 'CST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Chicago', hour12: true}) + '<br>';
+        timeString += 'MST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Denver', hour12: true}) + '<br>';
+        timeString += 'PST: ' + new Date().toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', hour12: true});
     } else if(phoneCode === '44') {
-        timeString += 'UK Time: ' + new Date().toLocaleTimeString('en-GB', {timeZone: 'Europe/London'});
+        timeString += 'UK Time: ' + new Date().toLocaleTimeString('en-GB', {timeZone: 'Europe/London', hour12: true});
     } else {
         timeString = 'Please enter a valid phone code.';
     }
