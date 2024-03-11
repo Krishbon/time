@@ -54,11 +54,7 @@ function updateTime() {
                                 '<p>PST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', ...options}) + '</p>';
     } else if(phoneCode === '44') {
         timeDisplay.innerHTML = '<p>UK Time: ' + currentTime.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', ...options}) + '</p>';
-    } else if(phoneCode === '61') {
-        timeDisplay.innerHTML = '<p>Australia Eastern Time: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
-                                '<p>Australia Central Time: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
-                                '<p>Australia Western Time: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth', ...options}) + '</p>';
-    }
+    } 
     else {
         timeDisplay.innerHTML = '<p>Please enter a valid phone code.</p>';
     }
