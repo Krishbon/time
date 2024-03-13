@@ -3,413 +3,632 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Time Zone Display</title>
+<title>Enter</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
 <style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to center, #ffffff, #ffffff);
-    text-align: center;
-  }
-  #phoneCode {
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-    max-width: 300px; /* Adjust the width as needed */
-    box-sizing: border-box;
-  }
-  #timeDisplay {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  h1 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  p {
-    color: #666;
-    font-size: 18px;
-    line-height: 1.6;
-  }
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, yellow, red, orange, violet, pink, indigo, black);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#wrapper {
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#timeDisplay {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-size: 1.2em;
+}
+
 </style>
 <script>
 function updateTime() {
-    var phoneCode = document.getElementById('phoneCode').value;
-    var timeDisplay = document.getElementById('timeDisplay');
-    var currentTime = new Date();
-    var options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+  var countryInput = document.getElementById('countryInput').value;
+  var timeDisplay = document.getElementById('timeDisplay');
+  var currentTime = new Date();
+  var options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
 
-    if(phoneCode === '1') {
-        timeDisplay.innerHTML = timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-us"></span> USA: ' + 
-                                '<p>EST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/New_York', ...options}) + '</p>' +
-                                '<p>CST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Chicago', ...options}) + '</p>' +
-                                '<p>MST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Denver', ...options}) + '</p>' +
-                                '<p>PST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', ...options}) + '</p>';
-    } else if(phoneCode === '44') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gb"></span> United Kingdom '+'<p>UK Time: ' + currentTime.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', ...options}) + '</p>';
-    } 
-      else if(phoneCode === '91') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-in"></span> India '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
-    } else if(phoneCode === '61') {
-        timeDisplay.innerHTML = '<p>AET: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
-                                '<p>ACT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
-                                '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth', ...options}) + '</p>';
-    } else if(phoneCode === '93') {
-    timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-af"></span> Afghanistan '+'<p>Afghanistan Time: ' + currentTime.toLocaleTimeString('en-AF', {timeZone: 'Asia/Kabul', ...options}) + '</p>';
-    } else if(phoneCode === '374') {
-    timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-am"></span> Armenia  </p>'+'<p>Armenia Time: ' + currentTime.toLocaleTimeString('en-AM', {timeZone: 'Asia/Yerevan', ...options}) + '</p>';
-    } else if(phoneCode === '994') {
-    timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-az"></span> Azerbaijan </p> '+'<p>Azerbaijan Time: ' + currentTime.toLocaleTimeString('en-AZ', {timeZone: 'Asia/Baku', ...options}) + '</p>';
-    } else if(phoneCode === '973') {
-      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bh"></span> Bahrain  </p>'+'<p>Bahrain Time: ' + currentTime.toLocaleTimeString('en-BH', {timeZone: 'Asia/Bahrain', ...options}) + '</p>';
-    } else if(phoneCode === '880') {
-      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bd"></span> Bangladesh  </p>'+' <p> Bangladesh Time: ' + currentTime.toLocaleTimeString('en-BD', {timeZone: 'Asia/Dhaka', ...options}) + '</p>';
-    } else if(phoneCode === '975') {
-      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bt"></span> Bhutan  </p> '+' <p>Bhutan Time: ' + currentTime.toLocaleTimeString('en-BT', {timeZone: 'Asia/Thimphu', ...options}) + '</p>';
-    } else if(phoneCode === '673') {
-      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bn"></span> Brunei  </p> '+' <p> Brunei Time: ' + currentTime.toLocaleTimeString('en-BN', {timeZone: 'Asia/Brunei', ...options}) + '</p>';
-    } else if(phoneCode === '855') {
-      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-kh"></span> Cambodia  </p> '+'<p> Cambodia Time: ' + currentTime.toL<p>ocaleTimeString('en-KH', {timeZone: 'Asia/Phnom_Penh', ...options}) + '</p>';
-    } else if(phoneCode === '86') {
-      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cn"></span> China  </p> '+' <p> China Time: ' + currentTime.toLocaleTimeString('en-CN', {timeZone: 'Asia/Shanghai', ...options}) + '</p>';
-    } else if(phoneCode === '357') {
-      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-cy"></span> Cyprus  </p> '+'<p>Cyprus Time: ' + currentTime.toLocaleTimeString('en-CY', {timeZone: 'Asia/Nicosia', ...options}) + '</p>';
-    } else if(phoneCode === '20') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-eg"></span> Egypt  </p> '+' <p>Egypt Time: ' + currentTime.toLocaleTimeString('en-EG', {timeZone: 'Africa/Cairo', ...options}) + '</p>';
-    } else if(phoneCode === '995') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ge"></span> Georgia  </p> '+' <p>Georgia Time: ' + currentTime.toLocaleTimeString('en-GE', {timeZone: 'Asia/Tbilisi', ...options}) + '</p>';
-    } else if(phoneCode === '852') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-hk"></span> Hong Kong  </p> '+'<p>Hong Kong Time: ' + currentTime.toLocaleTimeString('en-HK', {timeZone: 'Asia/Hong_Kong', ...options}) + '</p>';
-    } else if(phoneCode === '91') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-in"></span> India  </p> '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
-    } else if(phoneCode === '62') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-id"></span> Indonesia  </p> '+'<p>Indonesia Time: ' + currentTime.toLocaleTimeString('en-ID', {timeZone: 'Asia/Jakarta', ...options}) + '</p>';
-    } else if(phoneCode === '98') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ir"></span> Iran  </p> '+'<p>Iran Time: ' + currentTime.toLocaleTimeString('en-IR', {timeZone: 'Asia/Tehran', ...options}) + '</p>';
-    } else if(phoneCode === '964') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-iq"></span> Iraq </p> '+'<p>Iraq Time: ' + currentTime.toLocaleTimeString('en-IQ', {timeZone: 'Asia/Baghdad', ...options}) + '</p>';
-    } else if(phoneCode === '972') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-il"></span> Israel  </p> '+' <p>Israel Time: ' + currentTime.toLocaleTimeString('en-IL', {timeZone: 'Asia/Jerusalem', ...options}) + '</p>';
-    } else if(phoneCode === '81') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-jp"></span> Japan  </p> '+' <p>Japan Time: ' + currentTime.toLocaleTimeString('en-JP', {timeZone: 'Asia/Tokyo', ...options}) + '</p>';
-    } else if(phoneCode === '962') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-jo"></span> Jordan  </p> '+'<p>Jordan Time: ' + currentTime.toLocaleTimeString('en-JO', {timeZone: 'Asia/Amman', ...options}) + '</p>';
-    } else if(phoneCode === '7') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kz"></span> Kazakhstan  </p> '+' <p>Kazakhstan Time: ' + currentTime.toLocaleTimeString('en-KZ', {timeZone: 'Asia/Almaty', ...options}) + '</p>';
-    } else if(phoneCode === '965') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kw"></span> Kuwait  </p> '+'<p>Kuwait Time: ' + currentTime.toLocaleTimeString('en-KW', {timeZone: 'Asia/Kuwait', ...options}) + '</p>';
-    } else if(phoneCode === '996') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kg"></span> Kyrgyzstan  </p> '+'<p>Kyrgyzstan Time: ' + currentTime.toLocaleTimeString('en-KG', {timeZone: 'Asia/Bishkek', ...options}) + '</p>';
-    } else if(phoneCode === '856') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-la"></span> Laos  </p> '+'<p>Laos Time: ' + currentTime.toLocaleTimeString('en-LA', {timeZone: 'Asia/Vientiane', ...options}) + '</p>';
-    } else if(phoneCode === '961') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-lb"></span> Lebanon  </p> '+'<p>Lebanon Time: ' + currentTime.toLocaleTimeString('en-LB', {timeZone: 'Asia/Beirut', ...options}) + '</p>';
-    } else if(phoneCode === '853') {
-    timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mo"></span> Macau  </p> '+' <p>Macau Time: ' + currentTime.toLocaleTimeString('en-MO', {timeZone: 'Asia/Macau', ...options}) + '</p>';
-    } else if(phoneCode === '60') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-my"></span> Malaysia  </p> '+'<p>Malaysia Time: ' + currentTime.toLocaleTimeString('en-MY', {timeZone: 'Asia/Kuala_Lumpur', ...options}) + '</p>';
-    } else if(phoneCode === '960') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mv"></span> Maldives  </p> '+'<p>Maldives Time: ' + currentTime.toLocaleTimeString('en-MV', {timeZone: 'Indian/Maldives', ...options}) + '</p>';
-    } else if(phoneCode === '976') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mn"></span> Mongolia  </p> '+'<p>Mongolia Time: ' + currentTime.toLocaleTimeString('en-MN', {timeZone: 'Asia/Ulaanbaatar', ...options}) + '</p>';
-    } else if(phoneCode === '95') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mm"></span> Myanmar  </p> '+'<p>Myanmar Time: ' + currentTime.toLocaleTimeString('en-MM', {timeZone: 'Asia/Yangon', ...options}) + '</p>';
-    } else if(phoneCode === '977') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-np"></span> Nepal:  </p> '+' <p>Nepal Time: ' + currentTime.toLocaleTimeString('en-NP', {timeZone: 'Asia/Kathmandu', ...options}) + '</p>';
-    } else if(phoneCode === '850') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kp"></span> North Korea  </p> '+'<p>North Korea Time: ' + currentTime.toLocaleTimeString('en-KP', {timeZone: 'Asia/Pyongyang', ...options}) + '</p>';
-    } else if(phoneCode === '968') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-om"></span> Oman  </p> '+'<p>Oman Time: ' + currentTime.toLocaleTimeString('en-OM', {timeZone: 'Asia/Muscat', ...options}) + '</p>';
-    } else if(phoneCode === '92') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-pk"></span> Pakistan  </p> '+'<p>Pakistan Time: ' + currentTime.toLocaleTimeString('en-PK', {timeZone: 'Asia/Karachi', ...options}) + '</p>';
-    } else if(phoneCode === '970') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ps"></span> Palestine  </p> '+'<p>Palestine Time: ' + currentTime.toLocaleTimeString('en-PS', {timeZone: 'Asia/Gaza', ...options}) + '</p>';
-    } else if(phoneCode === '63') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ph"></span> Philippines  </p> '+'<p>Philippines Time: ' + currentTime.toLocaleTimeString('en-PH', {timeZone: 'Asia/Manila', ...options}) + '</p>';
-    } else if(phoneCode === '974') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-qa"></span> Qatar  </p> '+'<p>Qatar Time: ' + currentTime.toLocaleTimeString('en-QA', {timeZone: 'Asia/Qatar', ...options}) + '</p>';
-    } else if(phoneCode === '966') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-sa"></span> Saudi Arabia  </p> '+' <p>Saudi Arabia Time: ' + currentTime.toLocaleTimeString('en-SA', {timeZone: 'Asia/Riyadh', ...options}) + '</p>';
-    } else if(phoneCode === '65') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-sg"></span> Singapore  </p> '+'<p>Singapore Time: ' + currentTime.toLocaleTimeString('en-SG', {timeZone: 'Asia/Singapore', ...options}) + '</p>';
-    } else if(phoneCode === '82') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kr"></span> South Korea  </p> '+'<p>South Korea Time: ' + currentTime.toLocaleTimeString('en-KR', {timeZone: 'Asia/Seoul', ...options}) + '</p>';
-    } else if(phoneCode === '94') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-lk"></span> Sri Lanka  </p> '+'<p>Sri Lanka Time: ' + currentTime.toLocaleTimeString('en-LK', {timeZone: 'Asia/Colombo', ...options}) + '</p>';
-    } else if(phoneCode === '963') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-sy"></span> Syria  </p>'+'<p>Syria Time: ' + currentTime.toLocaleTimeString('en-SY', {timeZone: 'Asia/Damascus', ...options}) + '</p>';
-    } else if(phoneCode === '886') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tw"></span> Taiwan  </p>'+'<p>Taiwan Time: ' + currentTime.toLocaleTimeString('en-TW', {timeZone: 'Asia/Taipei', ...options}) + '</p>';
-    } else if(phoneCode === '992') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tj"></span> Tajikistan  </p> '+'<p>Tajikistan Time: ' + currentTime.toLocaleTimeString('en-TJ', {timeZone: 'Asia/Dushanbe', ...options}) + '</p>';
-    } else if(phoneCode === '66') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-th"></span> Thailand  </p>'+'<p>Thailand Time: ' + currentTime.toLocaleTimeString('en-TH', {timeZone: 'Asia/Bangkok', ...options}) + '</p>';
-    } else if(phoneCode === '670') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tl"></span> Timor-Leste  </p> '+'<p>Timor-Leste Time: ' + currentTime.toLocaleTimeString('en-TL', {timeZone: 'Asia/Dili', ...options}) + '</p>';
-    } else if(phoneCode === '90') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tr"></span> Turkey  </p>'+'<p>Turkey Time: ' + currentTime.toLocaleTimeString('en-TR', {timeZone: 'Europe/Istanbul', ...options}) + '</p>';
-    } else if(phoneCode === '993') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tm"></span> Turkmenistan  </p>'+'<p>Turkmenistan Time: ' + currentTime.toLocaleTimeString('en-TM', {timeZone: 'Asia/Ashgabat', ...options}) + '</p>';
-    } else if(phoneCode === '971') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ae"></span> United Arab Emirates </p>'+'<p>United Arab Emirates Time: ' + currentTime.toLocaleTimeString('en-AE', {timeZone: 'Asia/Dubai', ...options}) + '</p>';
-    } else if(phoneCode === '998') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-uz"></span> Uzbekistan  </p>'+'<p>Uzbekistan Time: ' + currentTime.toLocaleTimeString('en-UZ', {timeZone: 'Asia/Tashkent', ...options}) + '</p>';
-    } else if(phoneCode === '84') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-vn"></span> Vietnam  </p> '+'<p>Vietnam Time: ' + currentTime.toLocaleTimeString('en-VN', {timeZone: 'Asia/Ho_Chi_Minh', ...options}) + '</p>';
-    } else if(phoneCode === '374') {
-    timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-az"></span> Azerbaijan  '+'<p>Armenia Time: ' + currentTime.toLocaleTimeString('en-AM', {timeZone: 'Asia/Yerevan', ...options}) + '</p>';
-    } else if(phoneCode === '994') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-am"></span> Armenia  '+'<p>Azerbaijan Time: ' + currentTime.toLocaleTimeString('en-AZ', {timeZone: 'Asia/Baku', ...options}) + '</p>';
-    } else if(phoneCode === '375') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-by"></span> Belarus  '+'<p>Belarus Time: ' + currentTime.toLocaleTimeString('en-BY', {timeZone: 'Europe/Minsk', ...options}) + '</p>';
-    } else if(phoneCode === '387') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ba"></span> Bosnia and Herzegovina  '+'<p>Bosnia and Herzegovina Time: ' + currentTime.toLocaleTimeString('en-BA', {timeZone: 'Europe/Sarajevo', ...options}) + '</p>';
-    } else if(phoneCode === '359') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bg"></span> Bulgaria  '+'<p>Bulgaria Time: ' + currentTime.toLocaleTimeString('en-BG', {timeZone: 'Europe/Sofia', ...options}) + '</p>';
-    } else if(phoneCode === '385') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-hr"></span> Croatia  '+'<p>Croatia Time: ' + currentTime.toLocaleTimeString('en-HR', {timeZone: 'Europe/Zagreb', ...options}) + '</p>';
-    } else if(phoneCode === '357') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cy"></span> Cyprus  '+'<p>Cyprus Time: ' + currentTime.toLocaleTimeString('en-CY', {timeZone: 'Asia/Nicosia', ...options}) + '</p>';
-    } else if(phoneCode === '420') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cz"></span> Czech Republic  '+'<p>Czech Republic Time: ' + currentTime.toLocaleTimeString('en-CZ', {timeZone: 'Europe/Prague', ...options}) + '</p>';
-    } else if(phoneCode === '372') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ee"></span> Estonia  '+'<p>Estonia Time: ' + currentTime.toLocaleTimeString('en-EE', {timeZone: 'Europe/Tallinn', ...options}) + '</p>';
-    } else if(phoneCode === '358') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-fi"></span> Finland  '+'<p>Finland Time: ' + currentTime.toLocaleTimeString('en-FI', {timeZone: 'Europe/Helsinki', ...options}) + '</p>';
-    } else if(phoneCode === '33') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-fr"></span> France  '+'<p>France Time: ' + currentTime.toLocaleTimeString('en-FR', {timeZone: 'Europe/Paris', ...options}) + '</p>';
-    } else if(phoneCode === '49') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-de"></span> Germany  '+'<p>Germany Time: ' + currentTime.toLocaleTimeString('en-DE', {timeZone: 'Europe/Berlin', ...options}) + '</p>';
-    } else if(phoneCode === '30') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gr"></span> Greece  '+'<p>Greece Time: ' + currentTime.toLocaleTimeString('en-GR', {timeZone: 'Europe/Athens', ...options}) + '</p>';
-    } else if(phoneCode === '36') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-hu"></span> Hungary  '+'<p>Hungary Time: ' + currentTime.toLocaleTimeString('en-HU', {timeZone: 'Europe/Budapest', ...options}) + '</p>';
-    } else if(phoneCode === '354') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-is"></span> Iceland  '+'<p>Iceland Time: ' + currentTime.toLocaleTimeString('en-IS', {timeZone: 'Atlantic/Reykjavik', ...options}) + '</p>';
-    } else if(phoneCode === '353') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ie"></span> Ireland  '+'<p>Ireland Time: ' + currentTime.toLocaleTimeString('en-IE', {timeZone: 'Europe/Dublin', ...options}) + '</p>';
-    } else if(phoneCode === '39') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-it"></span> Italy  '+'<p>Italy Time: ' + currentTime.toLocaleTimeString('en-IT', {timeZone: 'Europe/Rome', ...options}) + '</p>';
-    } else if(phoneCode === '967') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ye"></span> Yemen  '+'<p>Yemen Time: ' + currentTime.toLocaleTimeString('en-YE', {timeZone: 'Asia/Aden', ...options}) + '</p>';
-    } else if(phoneCode === '383') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-xk"></span> Kosovo  '+'<p>Kosovo Time: ' + currentTime.toLocaleTimeString('en-XK', {timeZone: 'Europe/Belgrade', ...options}) + '</p>';
-    } else if(phoneCode === '371') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-lv"></span> Latvia  '+'<p>Latvia Time: ' + currentTime.toLocaleTimeString('en-LV', {timeZone: 'Europe/Riga', ...options}) + '</p>';
-    } else if(phoneCode === '423') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-li"></span> Liechtenstein  '+'<p>Liechtenstein Time: ' + currentTime.toLocaleTimeString('en-LI', {timeZone: 'Europe/Vaduz', ...options}) + '</p>';
-    } else if(phoneCode === '370') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-lt"></span> Lithuania  '+'<p>Lithuania Time: ' + currentTime.toLocaleTimeString('en-LT', {timeZone: 'Europe/Vilnius', ...options}) + '</p>';
-    } else if(phoneCode === '352') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-lu"></span> Luxembourg  '+'<p>Luxembourg Time: ' + currentTime.toLocaleTimeString('en-LU', {timeZone: 'Europe/Luxembourg', ...options}) + '</p>';
-    } else if(phoneCode === '389') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-mk"></span> North Macedonia  '+'<p>North Macedonia Time: ' + currentTime.toLocaleTimeString('en-MK', {timeZone: 'Europe/Skopje', ...options}) + '</p>';
-    } else if(phoneCode === '356') {
-        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mt"></span> Malta  356</p>'+'<p>Malta Time: ' + currentTime.toLocaleTimeString('en-MT', {timeZone: 'Europe/Malta', ...options}) + '</p>';
-    } else if(phoneCode === '373') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-md"></span> Moldova  '+'<p>Moldova Time: ' + currentTime.toLocaleTimeString('en-MD', {timeZone: 'Europe/Chisinau', ...options}) + '</p>';
-    } else if(phoneCode === '377') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-mc"></span> Monaco  '+'<p>Monaco Time: ' + currentTime.toLocaleTimeString('en-MC', {timeZone: 'Europe/Monaco', ...options}) + '</p>';
-    } else if(phoneCode === '382') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-me"></span> Montenegro  '+'<p>Montenegro Time: ' + currentTime.toLocaleTimeString('en-ME', {timeZone: 'Europe/Podgorica', ...options}) + '</p>';
-    } else if(phoneCode === '31') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-nl"></span> Netherlands  '+'<p>Netherlands Time: ' + currentTime.toLocaleTimeString('en-NL', {timeZone: 'Europe/Amsterdam', ...options}) + '</p>';
-    } else if(phoneCode === '47') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-no"></span> Norway  '+'<p>Norway Time: ' + currentTime.toLocaleTimeString('en-NO', {timeZone: 'Europe/Oslo', ...options}) + '</p>';
-    } else if(phoneCode === '48') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-pl"></span> Poland  '+'<p>Poland Time: ' + currentTime.toLocaleTimeString('en-PL', {timeZone: 'Europe/Warsaw', ...options}) + '</p>';
-    } else if(phoneCode === '351') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-pt"></span> Portugal  '+'<p>Portugal Time: ' + currentTime.toLocaleTimeString('en-PT', {timeZone: 'Europe/Lisbon', ...options}) + '</p>';
-    } else if(phoneCode === '40') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ro"></span> Romania  '+'<p>Romania Time: ' + currentTime.toLocaleTimeString('en-RO', {timeZone: 'Europe/Bucharest', ...options}) + '</p>';
-    } else if(phoneCode === '7') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ru"></span> Russia  '+'<p>Russia Time: ' + currentTime.toLocaleTimeString('en-RU', {timeZone: 'Europe/Moscow', ...options}) + '</p>';
-    } else if(phoneCode === '378') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sm"></span> San Marino  '+'<p>San Marino Time: ' + currentTime.toLocaleTimeString('en-SM', {timeZone: 'Europe/San_Marino', ...options}) + '</p>';
-    } else if(phoneCode === '381') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-rs"></span> Serbia  '+'<p>Serbia Time: ' + currentTime.toLocaleTimeString('en-RS', {timeZone: 'Europe/Belgrade', ...options}) + '</p>';
-    } else if(phoneCode === '421') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sk"></span> Slovakia  '+'<p>Slovakia Time: ' + currentTime.toLocaleTimeString('en-SK', {timeZone: 'Europe/Bratislava', ...options}) + '</p>';
-    } else if(phoneCode === '386') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-si"></span> Slovenia  '+'<p>Slovenia Time: ' + currentTime.toLocaleTimeString('en-SI', {timeZone: 'Europe/Ljubljana', ...options}) + '</p>';
-    } else if(phoneCode === '34') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-es"></span> Spain  '+'<p>Spain Time: ' + currentTime.toLocaleTimeString('en-ES', {timeZone: 'Europe/Madrid', ...options}) + '</p>';
-    } else if(phoneCode === '46') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-se"></span> Sweden  '+'<p>Sweden Time: ' + currentTime.toLocaleTimeString('en-SE', {timeZone: 'Europe/Stockholm', ...options}) + '</p>';
-    } else if(phoneCode === '41') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ch"></span> Switzerland  '+'<p>Switzerland Time: ' + currentTime.toLocaleTimeString('en-CH', {timeZone: 'Europe/Zurich', ...options}) + '</p>';
-    } else if(phoneCode === '90') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ch"></span> Switzerland  '+'<p>Turkey Time: ' + currentTime.toLocaleTimeString('en-TR', {timeZone: 'Europe/Istanbul', ...options}) + '</p>';
-    } else if(phoneCode === '380') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ua"></span> Ukraine Time: '+'<p>Ukraine Time: ' + currentTime.toLocaleTimeString('en-UA', {timeZone: 'Europe/Kiev', ...options}) + '</p>';
-    } else if(phoneCode === '379') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-va"></span> Vatican City  '+'<p>Vatican City Time: ' + currentTime.toLocaleTimeString('it-VA', {timeZone: 'Europe/Vatican', ...options}) + '</p>';
-    } else if(phoneCode === '213') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-dz"></span> Algeria  '+'<p>Algeria Time: ' + currentTime.toLocaleTimeString('ar-DZ', {timeZone: 'Africa/Algiers', ...options}) + '</p>';
-    } else if(phoneCode === '244') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ao"></span> Angola  '+'<p>Angola Time: ' + currentTime.toLocaleTimeString('pt-AO', {timeZone: 'Africa/Luanda', ...options}) + '</p>';
-    } else if(phoneCode === '247') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ac"></span> Ascension Island  '+'<p>Ascension Island Time: ' + currentTime.toLocaleTimeString('en-AC', {timeZone: 'Atlantic/St_Helena', ...options}) + '</p>';
-    } else if(phoneCode === '229') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bj"></span> Benin  '+'<p>Benin Time: ' + currentTime.toLocaleTimeString('fr-BJ', {timeZone: 'Africa/Porto-Novo', ...options}) + '</p>';
-    } else if(phoneCode === '267') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bw"></span> Botswana  '+'<p>Botswana Time: ' + currentTime.toLocaleTimeString('en-BW', {timeZone: 'Africa/Gaborone', ...options}) + '</p>';
-    } else if(phoneCode === '226') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bf"></span> Burkina Faso  '+'<p>Burkina Faso Time: ' + currentTime.toLocaleTimeString('fr-BF', {timeZone: 'Africa/Ouagadougou', ...options}) + '</p>';
-    } else if(phoneCode === '257') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bi"></span> Burundi  '+'<p>Burundi Time: ' + currentTime.toLocaleTimeString('fr-BI', {timeZone: 'Africa/Bujumbura', ...options}) + '</p>';
-    } else if(phoneCode === '237') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cm"></span> Cameroon  '+'<p>Cameroon Time: ' + currentTime.toLocaleTimeString('en-CM', {timeZone: 'Africa/Douala', ...options}) + '</p>';
-    } else if(phoneCode === '238') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cv"></span> Cape Verde  '+'<p>Cape Verde Time: ' + currentTime.toLocaleTimeString('pt-CV', {timeZone: 'Atlantic/Cape_Verde', ...options}) + '</p>';
-    } else if(phoneCode === '236') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cf"></span> Central African Republic Time: '+'<p>Central African Republic Time: ' + currentTime.toLocaleTimeString('fr-CF', {timeZone: 'Africa/Bangui', ...options}) + '</p>';
-    } else if(phoneCode === '235') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-td"></span> Chad  '+'<p>Chad Time: ' + currentTime.toLocaleTimeString('fr-TD', {timeZone: 'Africa/Ndjamena', ...options}) + '</p>';
-    } else if(phoneCode === '269') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-km"></span> Comoros  '+'<p>Comoros Time: ' + currentTime.toLocaleTimeString('ar-KM', {timeZone: 'Indian/Comoro', ...options}) + '</p>';
-    } else if(phoneCode === '225') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ci"></span> Côte d\'Ivoire  '+'<p>Côte d\'Ivoire Time: ' + currentTime.toLocaleTimeString('fr-CI', {timeZone: 'Africa/Abidjan', ...options}) + '</p>';
-    } else if(phoneCode === '243') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cd"></span> Democratic Republic of the Congo  '+'<p>Democratic Republic of the Congo Time: ' + currentTime.toLocaleTimeString('fr-CD', {timeZone: 'Africa/Kinshasa', ...options}) + '</p>';
-    } else if(phoneCode === '253') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-dj"></span> Djibouti  '+'<p>Djibouti Time: ' + currentTime.toLocaleTimeString('fr-DJ', {timeZone: 'Africa/Djibouti', ...options}) + '</p>';
-    } else if(phoneCode === '20') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-eg"></span> Egypt  '+'<p>Egypt Time: ' + currentTime.toLocaleTimeString('ar-EG', {timeZone: 'Africa/Cairo', ...options}) + '</p>';
-    } else if(phoneCode === '240') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gq"></span> Equatorial Guinea  '+'<p>Equatorial Guinea Time: ' + currentTime.toLocaleTimeString('es-GQ', {timeZone: 'Africa/Malabo', ...options}) + '</p>';
-    } else if(phoneCode === '291') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-er"></span> Eritrea  '+'<p>Eritrea Time: ' + currentTime.toLocaleTimeString('ti-ER', {timeZone: 'Africa/Asmara', ...options}) + '</p>';
-    } else if(phoneCode === '268') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sz"></span> Eswatini  '+'<p>Eswatini Time: ' + currentTime.toLocaleTimeString('en-SZ', {timeZone: 'Africa/Mbabane', ...options}) + '</p>';
-    } else if(phoneCode === '251') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-et"></span> Ethiopia  '+'<p>Ethiopia Time: ' + currentTime.toLocaleTimeString('am-ET', {timeZone: 'Africa/Addis_Ababa', ...options}) + '</p>';
-    } else if(phoneCode === '241') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ga"></span> Gabon  '+'<p>Gabon Time: ' + currentTime.toLocaleTimeString('fr-GA', {timeZone: 'Africa/Libreville', ...options}) + '</p>';
-    } else if(phoneCode === '220') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gm"></span> Gambia  '+'<p>Gambia Time: ' + currentTime.toLocaleTimeString('en-GM', {timeZone: 'Africa/Banjul', ...options}) + '</p>';
-    } else if(phoneCode === '233') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gh"></span> Ghana  '+'<p>Ghana Time: ' + currentTime.toLocaleTimeString('en-GH', {timeZone: 'Africa/Accra', ...options}) + '</p>';
-    } else if(phoneCode === '224') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gn"></span> Guinea  '+'<p>Guinea Time: ' + currentTime.toLocaleTimeString('fr-GN', {timeZone: 'Africa/Conakry', ...options}) + '</p>';
-    } else if(phoneCode === '245') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gw"></span> Guinea-Bissau  '+'<p>Guinea-Bissau Time: ' + currentTime.toLocaleTimeString('pt-GW', {timeZone: 'Africa/Bissau', ...options}) + '</p>';
-    } else if(phoneCode === '254') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ke"></span> Kenya  '+'<p>Kenya Time: ' + currentTime.toLocaleTimeString('en-KE', {timeZone: 'Africa/Nairobi', ...options}) + '</p>';
-    } else if(phoneCode === '266') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ls"></span> Lesotho '+'<p>Lesotho Time: ' + currentTime.toLocaleTimeString('en-LS', {timeZone: 'Africa/Maseru', ...options}) + '</p>';
-    } else if(phoneCode === '231') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-lr"></span> Liberia  '+'<p>Liberia Time: ' + currentTime.toLocaleTimeString('en-LR', {timeZone: 'Africa/Monrovia', ...options}) + '</p>';
-    } else if(phoneCode === '218') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ly"></span> Libya  '+'<p>Libya Time: ' + currentTime.toLocaleTimeString('ar-LY', {timeZone: 'Africa/Tripoli', ...options}) + '</p>';
-    } else if(phoneCode === '261') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mg"></span> Madagascar  '+'<p>Madagascar Time: ' + currentTime.toLocaleTimeString('fr-MG', {timeZone: 'Indian/Antananarivo', ...options}) + '</p>';
-    } else if(phoneCode === '265') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mw"></span> Malawi  '+'<p>Malawi Time: ' + currentTime.toLocaleTimeString('en-MW', {timeZone: 'Africa/Blantyre', ...options}) + '</p>';
-    } else if(phoneCode === '223') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ml"></span> Mali  '+'<p>Mali Time: ' + currentTime.toLocaleTimeString('fr-ML', {timeZone: 'Africa/Bamako', ...options}) + '</p>';
-    } else if(phoneCode === '222') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mr"></span> Mauritania  '+'<p>Mauritania Time: ' + currentTime.toLocaleTimeString('ar-MR', {timeZone: 'Africa/Nouakchott', ...options}) + '</p>';
-    } else if(phoneCode === '230') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mu"></span> Mauritius  '+'<p>Mauritius Time: ' + currentTime.toLocaleTimeString('en-MU', {timeZone: 'Indian/Mauritius', ...options}) + '</p>';
-    } else if(phoneCode === '262') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-yt"></span> Mayotte  '+'<p>Mayotte Time: ' + currentTime.toLocaleTimeString('fr-YT', {timeZone: 'Indian/Mayotte', ...options}) + '</p>';
-    } else if(phoneCode === '212') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ma"></span> Morocco  '+'<p>Morocco Time: ' + currentTime.toLocaleTimeString('ar-MA', {timeZone: 'Africa/Casablanca', ...options}) + '</p>';
-    } else if(phoneCode === '258') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mz"></span> Mozambique  '+'<p>Mozambique Time: ' + currentTime.toLocaleTimeString('pt-MZ', {timeZone: 'Africa/Maputo', ...options}) + '</p>';
-    } else if(phoneCode === '264') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-na"></span> Namibia  '+'<p>Namibia Time: ' + currentTime.toLocaleTimeString('en-NA', {timeZone: 'Africa/Windhoek', ...options}) + '</p>';
-    } else if(phoneCode === '227') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ne"></span> Niger  '+'<p>Niger Time: ' + currentTime.toLocaleTimeString('fr-NE', {timeZone: 'Africa/Niamey', ...options}) + '</p>';
-    } else if(phoneCode === '234') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ng"></span> Nigeria  '+'<p>Nigeria Time: ' + currentTime.toLocaleTimeString('en-NG', {timeZone: 'Africa/Lagos', ...options}) + '</p>';
-    } else if(phoneCode === '242') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cg"></span> Republic of the Congo  '+'<p>Republic of the Congo Time: ' + currentTime.toLocaleTimeString('fr-CG', {timeZone: 'Africa/Brazzaville', ...options}) + '</p>';
-    } else if(phoneCode === '262') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-re"></span> Reunion  '+'<p>Reunion Time: ' + currentTime.toLocaleTimeString('fr-RE', {timeZone: 'Indian/Reunion', ...options}) + '</p>';
-    } else if(phoneCode === '250') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-rw"></span> Rwanda  '+'<p>Rwanda Time: ' + currentTime.toLocaleTimeString('en-RW', {timeZone: 'Africa/Kigali', ...options}) + '</p>';
-    } else if(phoneCode === '290') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sh"></span> Saint Helena  '+'<p>Saint Helena Time: ' + currentTime.toLocaleTimeString('en-SH', {timeZone: 'Atlantic/St_Helena', ...options}) + '</p>';
-    } else if(phoneCode === '239') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-st"></span> Sao Tome & Principe '+'<p> Sao Tome & Principe Time: ' + currentTime.toLocaleTimeString('pt-ST', {timeZone: 'Africa/Sao_Tome', ...options}) + '</p>';
-    } else if(phoneCode === '221') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sn"></span> Senegal  '+'<p>Senegal Time: ' + currentTime.toLocaleTimeString('fr-SN', {timeZone: 'Africa/Dakar', ...options}) + '</p>';
-    } else if(phoneCode === '248') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sc"></span> Seychelles  '+'<p>Seychelles Time: ' + currentTime.toLocaleTimeString('fr-SC', {timeZone: 'Indian/Mahe', ...options}) + '</p>';
-    } else if(phoneCode === '232') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sl"></span> Sierra Leone  '+'<p>Sierra Leone Time: ' + currentTime.toLocaleTimeString('en-SL', {timeZone: 'Africa/Freetown', ...options}) + '</p>';
-    } else if(phoneCode === '252') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-so"></span> Somalia  '+'<p>Somalia Time: ' + currentTime.toLocaleTimeString('so-SO', {timeZone: 'Africa/Mogadishu', ...options}) + '</p>';
-    } else if(phoneCode === '27') {
-        timeDisplay.innerHTML =  '<p> <span class="flag-icon flag-icon-za"></span> South Africa  '+'<p>South Africa Time: ' + currentTime.toLocaleTimeString('en-ZA', {timeZone: 'Africa/Johannesburg', ...options}) + '</p>';
-    } else if(phoneCode === '211') {
-        timeDisplay.innerHTML =    '<p> <span class="flag-icon flag-icon-ss"></span> South Sudan  '+'<p>South Sudan Time: ' + currentTime.toLocaleTimeString('en-SS', {timeZone: 'Africa/Juba', ...options}) + '</p>';
-    } else if(phoneCode === '249') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sd"></span> Sudan  '+'<p>Sudan Time: ' + currentTime.toLocaleTimeString('ar-SD', {timeZone: 'Africa/Khartoum', ...options}) + '</p>';
-    } else if(phoneCode === '255') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-tz"></span> Tanzania '+'<p>Tanzania Time: ' + currentTime.toLocaleTimeString('sw-TZ', {timeZone: 'Africa/Dar_es_Salaam', ...options}) + '</p>';
-    } else if(phoneCode === '228') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-tg"></span> Togo  '+'<p>Togo Time: ' + currentTime.toLocaleTimeString('fr-TG', {timeZone: 'Africa/Lome', ...options}) + '</p>';
-    } else if(phoneCode === '216') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-tn"></span> Tunisia '+'<p>Tunisia Time: ' + currentTime.toLocaleTimeString('ar-TN', {timeZone: 'Africa/Tunis', ...options}) + '</p>';
-    } else if(phoneCode === '256') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ug"></span> Uganda  '+'<p>Uganda Time: ' + currentTime.toLocaleTimeString('en-UG', {timeZone: 'Africa/Kampala', ...options}) + '</p>';
-    } else if(phoneCode === '212') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-eh"></span> Western Sahara  '+'<p>Western Sahara Time: ' + currentTime.toLocaleTimeString('ar-EH', {timeZone: 'Africa/El_Aaiun', ...options}) + '</p>';
-    } else if(phoneCode === '260') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-zm"></span> Zambia  '+'<p>Zambia Time: ' + currentTime.toLocaleTimeString('en-ZM', {timeZone: 'Africa/Lusaka', ...options}) + '</p>';
-    } else if(phoneCode === '263') {
-        timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-zw"></span> Zimbabwe '+'<p>Zimbabwe Time: ' + currentTime.toLocaleTimeString('en-ZW', {timeZone: 'Africa/Harare', ...options}) + '</p>';
-    } else if(phoneCode === '54') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ar"></span> Argentina  '+'<p>Argentina Time: ' + currentTime.toLocaleTimeString('es-AR', {timeZone: 'America/Argentina/Buenos_Aires', ...options}) + '</p>';
-    } else if(phoneCode === '591') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bo"></span> Bolivia  '+'<p>Bolivia Time: ' + currentTime.toLocaleTimeString('es-BO', {timeZone: 'America/La_Paz', ...options}) + '</p>';
-    } else if(phoneCode === '55') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-br"></span> Brazil  '+'<p>Brazil Time: ' + currentTime.toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo', ...options}) + '</p>';
-    } else if(phoneCode === '56') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cl"></span> Chile  '+'<p>Chile Time: ' + currentTime.toLocaleTimeString('es-CL', {timeZone: 'America/Santiago', ...options}) + '</p>';
-    } else if(phoneCode === '57') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-co"></span> Colombia  '+'<p>Colombia Time: ' + currentTime.toLocaleTimeString('es-CO', {timeZone: 'America/Bogota', ...options}) + '</p>';
-    } else if(phoneCode === '593') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ec"></span> Ecuador  '+'<p>Ecuador Time: ' + currentTime.toLocaleTimeString('es-EC', {timeZone: 'America/Guayaquil', ...options}) + '</p>';
-    } else if(phoneCode === '500') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-fk"></span> Falkland Islands  '+'<p>Falkland Islands Time: ' + currentTime.toLocaleTimeString('en-FK', {timeZone: 'Atlantic/Stanley', ...options}) + '</p>';
-    } else if(phoneCode === '594') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gf"></span> French Guiana  '+'<p>French Guiana Time: ' + currentTime.toLocaleTimeString('fr-GF', {timeZone: 'America/Cayenne', ...options}) + '</p>';
-    } else if(phoneCode === '592') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gy"></span> Guyana  '+'<p>Guyana Time: ' + currentTime.toLocaleTimeString('en-GY', {timeZone: 'America/Guyana', ...options}) + '</p>';
-    } else if(phoneCode === '595') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-py"></span> Paraguay  '+'<p>Paraguay Time: ' + currentTime.toLocaleTimeString('es-PY', {timeZone: 'America/Asuncion', ...options}) + '</p>';
-    } else if(phoneCode === '51') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-pe"></span> Peru  '+'<p>Peru Time: ' + currentTime.toLocaleTimeString('es-PE', {timeZone: 'America/Lima', ...options}) + '</p>';
-    } else if(phoneCode === '597') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sr"></span> Suriname  '+'<p>Suriname Time: ' + currentTime.toLocaleTimeString('nl-SR', {timeZone: 'America/Paramaribo', ...options}) + '</p>';
-    } else if(phoneCode === '598') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-uy"></span> Uruguay  '+'<p>Uruguay Time: ' + currentTime.toLocaleTimeString('es-UY', {timeZone: 'America/Montevideo', ...options}) + '</p>';
-    } else if(phoneCode === '58') {
-        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ve"></span> Venezuela '+'<p>Venezuela Time: ' + currentTime.toLocaleTimeString('es-VE', {timeZone: 'America/Caracas', ...options}) + '</p>';
-    }
-     else {
-        timeDisplay.innerHTML = '<p>Please enter a valid phone code.</p>';
-    }
+    // Here, you can add logic to handle both country names and phone codes
+  var phoneCode = getPhoneCodeFromInput(countryInput);
+
+  if (phoneCode !== null) {
+      // Handle time display based on phone code
+      if (phoneCode === '1') {
+          // Handle USA time zones
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-us"></span> USA: ' + 
+                                  '<p>EST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/New_York', ...options}) + '</p>' +
+                                  '<p>CST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Chicago', ...options}) + '</p>' +
+                                  '<p>MST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Denver', ...options}) + '</p>' +
+                                  '<p>PST: ' + currentTime.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', ...options}) + '</p>';
+      } else if (phoneCode === '44') {
+          // Handle UK time
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gb"></span> United Kingdom '+'<p>UK Time: ' + currentTime.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', ...options}) + '</p>';
+      } else if (phoneCode === '91') {
+          // Handle India time
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-in"></span> India '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
+      } else if (phoneCode === '61') {
+          // Handle Australia time zones
+          timeDisplay.innerHTML = '<p>AET: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
+                                  '<p>ACT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
+                                  '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth', ...options}) + '</p>';
+      } else if (phoneCode === '93') {
+          // Handle Afghanistan time
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-af"></span> Afghanistan '+'<p>Afghanistan Time: ' + currentTime.toLocaleTimeString('en-AF', {timeZone: 'Asia/Kabul', ...options}) + '</p>';
+      } else if (phoneCode === '966') {
+          // Handle Saudi Arabia time
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sa"></span> Saudi Arabia '+'<p>Saudi Arabia Time: ' + currentTime.toLocaleTimeString('en-SA', {timeZone: 'Asia/Riyadh', ...options}) + '</p>';     
+      } else if(phoneCode === '93') {
+      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-af"></span> Afghanistan '+'<p>Afghanistan Time: ' + currentTime.toLocaleTimeString('en-AF', {timeZone: 'Asia/Kabul', ...options}) + '</p>';
+      } else if(phoneCode === '374') {
+      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-am"></span> Armenia  </p>'+'<p>Armenia Time: ' + currentTime.toLocaleTimeString('en-AM', {timeZone: 'Asia/Yerevan', ...options}) + '</p>';
+      } else if(phoneCode === '994') {
+      timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-az"></span> Azerbaijan </p> '+'<p>Azerbaijan Time: ' + currentTime.toLocaleTimeString('en-AZ', {timeZone: 'Asia/Baku', ...options}) + '</p>';
+      } else if(phoneCode === '973') {
+        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bh"></span> Bahrain  </p>'+'<p>Bahrain Time: ' + currentTime.toLocaleTimeString('en-BH', {timeZone: 'Asia/Bahrain', ...options}) + '</p>';
+      } else if(phoneCode === '880') {
+        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bd"></span> Bangladesh  </p>'+' <p> Bangladesh Time: ' + currentTime.toLocaleTimeString('en-BD', {timeZone: 'Asia/Dhaka', ...options}) + '</p>';
+      } else if(phoneCode === '975') {
+        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bt"></span> Bhutan  </p> '+' <p>Bhutan Time: ' + currentTime.toLocaleTimeString('en-BT', {timeZone: 'Asia/Thimphu', ...options}) + '</p>';
+      } else if(phoneCode === '673') {
+        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bn"></span> Brunei  </p> '+' <p> Brunei Time: ' + currentTime.toLocaleTimeString('en-BN', {timeZone: 'Asia/Brunei', ...options}) + '</p>';
+      } else if(phoneCode === '855') {
+        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-kh"></span> Cambodia  </p> '+'<p> Cambodia Time: ' + currentTime.toL<p>ocaleTimeString('en-KH', {timeZone: 'Asia/Phnom_Penh', ...options}) + '</p>';
+      } else if(phoneCode === '86') {
+        timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cn"></span> China  </p> '+' <p> China Time: ' + currentTime.toLocaleTimeString('en-CN', {timeZone: 'Asia/Shanghai', ...options}) + '</p>';
+      } else if(phoneCode === '357') {
+        timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-cy"></span> Cyprus  </p> '+'<p>Cyprus Time: ' + currentTime.toLocaleTimeString('en-CY', {timeZone: 'Asia/Nicosia', ...options}) + '</p>';
+      } else if(phoneCode === '20') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-eg"></span> Egypt  </p> '+' <p>Egypt Time: ' + currentTime.toLocaleTimeString('en-EG', {timeZone: 'Africa/Cairo', ...options}) + '</p>';
+      } else if(phoneCode === '995') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ge"></span> Georgia  </p> '+' <p>Georgia Time: ' + currentTime.toLocaleTimeString('en-GE', {timeZone: 'Asia/Tbilisi', ...options}) + '</p>';
+      } else if(phoneCode === '852') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-hk"></span> Hong Kong  </p> '+'<p>Hong Kong Time: ' + currentTime.toLocaleTimeString('en-HK', {timeZone: 'Asia/Hong_Kong', ...options}) + '</p>';
+      } else if(phoneCode === '91') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-in"></span> India  </p> '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
+      } else if(phoneCode === '62') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-id"></span> Indonesia  </p> '+'<p>Indonesia Time: ' + currentTime.toLocaleTimeString('en-ID', {timeZone: 'Asia/Jakarta', ...options}) + '</p>';
+      } else if(phoneCode === '98') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ir"></span> Iran  </p> '+'<p>Iran Time: ' + currentTime.toLocaleTimeString('en-IR', {timeZone: 'Asia/Tehran', ...options}) + '</p>';
+      } else if(phoneCode === '964') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-iq"></span> Iraq </p> '+'<p>Iraq Time: ' + currentTime.toLocaleTimeString('en-IQ', {timeZone: 'Asia/Baghdad', ...options}) + '</p>';
+      } else if(phoneCode === '972') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-il"></span> Israel  </p> '+' <p>Israel Time: ' + currentTime.toLocaleTimeString('en-IL', {timeZone: 'Asia/Jerusalem', ...options}) + '</p>';
+      } else if(phoneCode === '81') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-jp"></span> Japan  </p> '+' <p>Japan Time: ' + currentTime.toLocaleTimeString('en-JP', {timeZone: 'Asia/Tokyo', ...options}) + '</p>';
+      } else if(phoneCode === '962') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-jo"></span> Jordan  </p> '+'<p>Jordan Time: ' + currentTime.toLocaleTimeString('en-JO', {timeZone: 'Asia/Amman', ...options}) + '</p>';
+      } else if(phoneCode === '7') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kz"></span> Kazakhstan  </p> '+' <p>Kazakhstan Time: ' + currentTime.toLocaleTimeString('en-KZ', {timeZone: 'Asia/Almaty', ...options}) + '</p>';
+      } else if(phoneCode === '965') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kw"></span> Kuwait  </p> '+'<p>Kuwait Time: ' + currentTime.toLocaleTimeString('en-KW', {timeZone: 'Asia/Kuwait', ...options}) + '</p>';
+      } else if(phoneCode === '996') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kg"></span> Kyrgyzstan  </p> '+'<p>Kyrgyzstan Time: ' + currentTime.toLocaleTimeString('en-KG', {timeZone: 'Asia/Bishkek', ...options}) + '</p>';
+      } else if(phoneCode === '856') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-la"></span> Laos  </p> '+'<p>Laos Time: ' + currentTime.toLocaleTimeString('en-LA', {timeZone: 'Asia/Vientiane', ...options}) + '</p>';
+      } else if(phoneCode === '961') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-lb"></span> Lebanon  </p> '+'<p>Lebanon Time: ' + currentTime.toLocaleTimeString('en-LB', {timeZone: 'Asia/Beirut', ...options}) + '</p>';
+      } else if(phoneCode === '853') {
+      timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mo"></span> Macau  </p> '+' <p>Macau Time: ' + currentTime.toLocaleTimeString('en-MO', {timeZone: 'Asia/Macau', ...options}) + '</p>';
+      } else if(phoneCode === '60') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-my"></span> Malaysia  </p> '+'<p>Malaysia Time: ' + currentTime.toLocaleTimeString('en-MY', {timeZone: 'Asia/Kuala_Lumpur', ...options}) + '</p>';
+      } else if(phoneCode === '960') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mv"></span> Maldives  </p> '+'<p>Maldives Time: ' + currentTime.toLocaleTimeString('en-MV', {timeZone: 'Indian/Maldives', ...options}) + '</p>';
+      } else if(phoneCode === '976') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mn"></span> Mongolia  </p> '+'<p>Mongolia Time: ' + currentTime.toLocaleTimeString('en-MN', {timeZone: 'Asia/Ulaanbaatar', ...options}) + '</p>';
+      } else if(phoneCode === '95') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mm"></span> Myanmar  </p> '+'<p>Myanmar Time: ' + currentTime.toLocaleTimeString('en-MM', {timeZone: 'Asia/Yangon', ...options}) + '</p>';
+      } else if(phoneCode === '977') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-np"></span> Nepal:  </p> '+' <p>Nepal Time: ' + currentTime.toLocaleTimeString('en-NP', {timeZone: 'Asia/Kathmandu', ...options}) + '</p>';
+      } else if(phoneCode === '850') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kp"></span> North Korea  </p> '+'<p>North Korea Time: ' + currentTime.toLocaleTimeString('en-KP', {timeZone: 'Asia/Pyongyang', ...options}) + '</p>';
+      } else if(phoneCode === '968') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-om"></span> Oman  </p> '+'<p>Oman Time: ' + currentTime.toLocaleTimeString('en-OM', {timeZone: 'Asia/Muscat', ...options}) + '</p>';
+      } else if(phoneCode === '92') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-pk"></span> Pakistan  </p> '+'<p>Pakistan Time: ' + currentTime.toLocaleTimeString('en-PK', {timeZone: 'Asia/Karachi', ...options}) + '</p>';
+      } else if(phoneCode === '970') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ps"></span> Palestine  </p> '+'<p>Palestine Time: ' + currentTime.toLocaleTimeString('en-PS', {timeZone: 'Asia/Gaza', ...options}) + '</p>';
+      } else if(phoneCode === '63') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ph"></span> Philippines  </p> '+'<p>Philippines Time: ' + currentTime.toLocaleTimeString('en-PH', {timeZone: 'Asia/Manila', ...options}) + '</p>';
+      } else if(phoneCode === '974') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-qa"></span> Qatar  </p> '+'<p>Qatar Time: ' + currentTime.toLocaleTimeString('en-QA', {timeZone: 'Asia/Qatar', ...options}) + '</p>';
+      } else if(phoneCode === '966') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-sa"></span> Saudi Arabia  </p> '+' <p>Saudi Arabia Time: ' + currentTime.toLocaleTimeString('en-SA', {timeZone: 'Asia/Riyadh', ...options}) + '</p>';
+      } else if(phoneCode === '65') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-sg"></span> Singapore  </p> '+'<p>Singapore Time: ' + currentTime.toLocaleTimeString('en-SG', {timeZone: 'Asia/Singapore', ...options}) + '</p>';
+      } else if(phoneCode === '82') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-kr"></span> South Korea  </p> '+'<p>South Korea Time: ' + currentTime.toLocaleTimeString('en-KR', {timeZone: 'Asia/Seoul', ...options}) + '</p>';
+      } else if(phoneCode === '94') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-lk"></span> Sri Lanka  </p> '+'<p>Sri Lanka Time: ' + currentTime.toLocaleTimeString('en-LK', {timeZone: 'Asia/Colombo', ...options}) + '</p>';
+      } else if(phoneCode === '963') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-sy"></span> Syria  </p>'+'<p>Syria Time: ' + currentTime.toLocaleTimeString('en-SY', {timeZone: 'Asia/Damascus', ...options}) + '</p>';
+      } else if(phoneCode === '886') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tw"></span> Taiwan  </p>'+'<p>Taiwan Time: ' + currentTime.toLocaleTimeString('en-TW', {timeZone: 'Asia/Taipei', ...options}) + '</p>';
+      } else if(phoneCode === '992') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tj"></span> Tajikistan  </p> '+'<p>Tajikistan Time: ' + currentTime.toLocaleTimeString('en-TJ', {timeZone: 'Asia/Dushanbe', ...options}) + '</p>';
+      } else if(phoneCode === '66') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-th"></span> Thailand  </p>'+'<p>Thailand Time: ' + currentTime.toLocaleTimeString('en-TH', {timeZone: 'Asia/Bangkok', ...options}) + '</p>';
+      } else if(phoneCode === '670') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tl"></span> Timor-Leste  </p> '+'<p>Timor-Leste Time: ' + currentTime.toLocaleTimeString('en-TL', {timeZone: 'Asia/Dili', ...options}) + '</p>';
+      } else if(phoneCode === '90') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tr"></span> Turkey  </p>'+'<p>Turkey Time: ' + currentTime.toLocaleTimeString('en-TR', {timeZone: 'Europe/Istanbul', ...options}) + '</p>';
+      } else if(phoneCode === '993') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-tm"></span> Turkmenistan  </p>'+'<p>Turkmenistan Time: ' + currentTime.toLocaleTimeString('en-TM', {timeZone: 'Asia/Ashgabat', ...options}) + '</p>';
+      } else if(phoneCode === '971') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-ae"></span> United Arab Emirates </p>'+'<p>United Arab Emirates Time: ' + currentTime.toLocaleTimeString('en-AE', {timeZone: 'Asia/Dubai', ...options}) + '</p>';
+      } else if(phoneCode === '998') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-uz"></span> Uzbekistan  </p>'+'<p>Uzbekistan Time: ' + currentTime.toLocaleTimeString('en-UZ', {timeZone: 'Asia/Tashkent', ...options}) + '</p>';
+      } else if(phoneCode === '84') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-vn"></span> Vietnam  </p> '+'<p>Vietnam Time: ' + currentTime.toLocaleTimeString('en-VN', {timeZone: 'Asia/Ho_Chi_Minh', ...options}) + '</p>';
+      } else if(phoneCode === '374') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-az"></span> Azerbaijan  '+'<p>Armenia Time: ' + currentTime.toLocaleTimeString('en-AM', {timeZone: 'Asia/Yerevan', ...options}) + '</p>';
+      } else if(phoneCode === '994') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-am"></span> Armenia  '+'<p>Azerbaijan Time: ' + currentTime.toLocaleTimeString('en-AZ', {timeZone: 'Asia/Baku', ...options}) + '</p>';
+      } else if(phoneCode === '375') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-by"></span> Belarus  '+'<p>Belarus Time: ' + currentTime.toLocaleTimeString('en-BY', {timeZone: 'Europe/Minsk', ...options}) + '</p>';
+      } else if(phoneCode === '387') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ba"></span> Bosnia and Herzegovina  '+'<p>Bosnia and Herzegovina Time: ' + currentTime.toLocaleTimeString('en-BA', {timeZone: 'Europe/Sarajevo', ...options}) + '</p>';
+      } else if(phoneCode === '359') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bg"></span> Bulgaria  '+'<p>Bulgaria Time: ' + currentTime.toLocaleTimeString('en-BG', {timeZone: 'Europe/Sofia', ...options}) + '</p>';
+      } else if(phoneCode === '385') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-hr"></span> Croatia  '+'<p>Croatia Time: ' + currentTime.toLocaleTimeString('en-HR', {timeZone: 'Europe/Zagreb', ...options}) + '</p>';
+      } else if(phoneCode === '357') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cy"></span> Cyprus  '+'<p>Cyprus Time: ' + currentTime.toLocaleTimeString('en-CY', {timeZone: 'Asia/Nicosia', ...options}) + '</p>';
+      } else if(phoneCode === '420') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cz"></span> Czech Republic  '+'<p>Czech Republic Time: ' + currentTime.toLocaleTimeString('en-CZ', {timeZone: 'Europe/Prague', ...options}) + '</p>';
+      } else if(phoneCode === '372') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ee"></span> Estonia  '+'<p>Estonia Time: ' + currentTime.toLocaleTimeString('en-EE', {timeZone: 'Europe/Tallinn', ...options}) + '</p>';
+      } else if(phoneCode === '358') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-fi"></span> Finland  '+'<p>Finland Time: ' + currentTime.toLocaleTimeString('en-FI', {timeZone: 'Europe/Helsinki', ...options}) + '</p>';
+      } else if(phoneCode === '33') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-fr"></span> France  '+'<p>France Time: ' + currentTime.toLocaleTimeString('en-FR', {timeZone: 'Europe/Paris', ...options}) + '</p>';
+      } else if(phoneCode === '49') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-de"></span> Germany  '+'<p>Germany Time: ' + currentTime.toLocaleTimeString('en-DE', {timeZone: 'Europe/Berlin', ...options}) + '</p>';
+      } else if(phoneCode === '30') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gr"></span> Greece  '+'<p>Greece Time: ' + currentTime.toLocaleTimeString('en-GR', {timeZone: 'Europe/Athens', ...options}) + '</p>';
+      } else if(phoneCode === '36') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-hu"></span> Hungary  '+'<p>Hungary Time: ' + currentTime.toLocaleTimeString('en-HU', {timeZone: 'Europe/Budapest', ...options}) + '</p>';
+      } else if(phoneCode === '354') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-is"></span> Iceland  '+'<p>Iceland Time: ' + currentTime.toLocaleTimeString('en-IS', {timeZone: 'Atlantic/Reykjavik', ...options}) + '</p>';
+      } else if(phoneCode === '353') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ie"></span> Ireland  '+'<p>Ireland Time: ' + currentTime.toLocaleTimeString('en-IE', {timeZone: 'Europe/Dublin', ...options}) + '</p>';
+      } else if(phoneCode === '39') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-it"></span> Italy  '+'<p>Italy Time: ' + currentTime.toLocaleTimeString('en-IT', {timeZone: 'Europe/Rome', ...options}) + '</p>';
+      } else if(phoneCode === '967') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ye"></span> Yemen  '+'<p>Yemen Time: ' + currentTime.toLocaleTimeString('en-YE', {timeZone: 'Asia/Aden', ...options}) + '</p>';
+      } else if(phoneCode === '383') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-xk"></span> Kosovo  '+'<p>Kosovo Time: ' + currentTime.toLocaleTimeString('en-XK', {timeZone: 'Europe/Belgrade', ...options}) + '</p>';
+      } else if(phoneCode === '371') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-lv"></span> Latvia  '+'<p>Latvia Time: ' + currentTime.toLocaleTimeString('en-LV', {timeZone: 'Europe/Riga', ...options}) + '</p>';
+      } else if(phoneCode === '423') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-li"></span> Liechtenstein  '+'<p>Liechtenstein Time: ' + currentTime.toLocaleTimeString('en-LI', {timeZone: 'Europe/Vaduz', ...options}) + '</p>';
+      } else if(phoneCode === '370') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-lt"></span> Lithuania  '+'<p>Lithuania Time: ' + currentTime.toLocaleTimeString('en-LT', {timeZone: 'Europe/Vilnius', ...options}) + '</p>';
+      } else if(phoneCode === '352') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-lu"></span> Luxembourg  '+'<p>Luxembourg Time: ' + currentTime.toLocaleTimeString('en-LU', {timeZone: 'Europe/Luxembourg', ...options}) + '</p>';
+      } else if(phoneCode === '389') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-mk"></span> North Macedonia  '+'<p>North Macedonia Time: ' + currentTime.toLocaleTimeString('en-MK', {timeZone: 'Europe/Skopje', ...options}) + '</p>';
+      } else if(phoneCode === '356') {
+          timeDisplay.innerHTML = '<p><span class="flag-icon flag-icon-mt"></span> Malta  356</p>'+'<p>Malta Time: ' + currentTime.toLocaleTimeString('en-MT', {timeZone: 'Europe/Malta', ...options}) + '</p>';
+      } else if(phoneCode === '373') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-md"></span> Moldova  '+'<p>Moldova Time: ' + currentTime.toLocaleTimeString('en-MD', {timeZone: 'Europe/Chisinau', ...options}) + '</p>';
+      } else if(phoneCode === '377') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-mc"></span> Monaco  '+'<p>Monaco Time: ' + currentTime.toLocaleTimeString('en-MC', {timeZone: 'Europe/Monaco', ...options}) + '</p>';
+      } else if(phoneCode === '382') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-me"></span> Montenegro  '+'<p>Montenegro Time: ' + currentTime.toLocaleTimeString('en-ME', {timeZone: 'Europe/Podgorica', ...options}) + '</p>';
+      } else if(phoneCode === '31') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-nl"></span> Netherlands  '+'<p>Netherlands Time: ' + currentTime.toLocaleTimeString('en-NL', {timeZone: 'Europe/Amsterdam', ...options}) + '</p>';
+      } else if(phoneCode === '47') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-no"></span> Norway  '+'<p>Norway Time: ' + currentTime.toLocaleTimeString('en-NO', {timeZone: 'Europe/Oslo', ...options}) + '</p>';
+      } else if(phoneCode === '48') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-pl"></span> Poland  '+'<p>Poland Time: ' + currentTime.toLocaleTimeString('en-PL', {timeZone: 'Europe/Warsaw', ...options}) + '</p>';
+      } else if(phoneCode === '351') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-pt"></span> Portugal  '+'<p>Portugal Time: ' + currentTime.toLocaleTimeString('en-PT', {timeZone: 'Europe/Lisbon', ...options}) + '</p>';
+      } else if(phoneCode === '40') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ro"></span> Romania  '+'<p>Romania Time: ' + currentTime.toLocaleTimeString('en-RO', {timeZone: 'Europe/Bucharest', ...options}) + '</p>';
+      } else if(phoneCode === '7') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ru"></span> Russia  '+'<p>Russia Time: ' + currentTime.toLocaleTimeString('en-RU', {timeZone: 'Europe/Moscow', ...options}) + '</p>';
+      } else if(phoneCode === '378') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sm"></span> San Marino  '+'<p>San Marino Time: ' + currentTime.toLocaleTimeString('en-SM', {timeZone: 'Europe/San_Marino', ...options}) + '</p>';
+      } else if(phoneCode === '381') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-rs"></span> Serbia  '+'<p>Serbia Time: ' + currentTime.toLocaleTimeString('en-RS', {timeZone: 'Europe/Belgrade', ...options}) + '</p>';
+      } else if(phoneCode === '421') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sk"></span> Slovakia  '+'<p>Slovakia Time: ' + currentTime.toLocaleTimeString('en-SK', {timeZone: 'Europe/Bratislava', ...options}) + '</p>';
+      } else if(phoneCode === '386') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-si"></span> Slovenia  '+'<p>Slovenia Time: ' + currentTime.toLocaleTimeString('en-SI', {timeZone: 'Europe/Ljubljana', ...options}) + '</p>';
+      } else if(phoneCode === '34') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-es"></span> Spain  '+'<p>Spain Time: ' + currentTime.toLocaleTimeString('en-ES', {timeZone: 'Europe/Madrid', ...options}) + '</p>';
+      } else if(phoneCode === '46') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-se"></span> Sweden  '+'<p>Sweden Time: ' + currentTime.toLocaleTimeString('en-SE', {timeZone: 'Europe/Stockholm', ...options}) + '</p>';
+      } else if(phoneCode === '41') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ch"></span> Switzerland  '+'<p>Switzerland Time: ' + currentTime.toLocaleTimeString('en-CH', {timeZone: 'Europe/Zurich', ...options}) + '</p>';
+      } else if(phoneCode === '90') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ch"></span> Switzerland  '+'<p>Turkey Time: ' + currentTime.toLocaleTimeString('en-TR', {timeZone: 'Europe/Istanbul', ...options}) + '</p>';
+      } else if(phoneCode === '380') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ua"></span> Ukraine Time: '+'<p>Ukraine Time: ' + currentTime.toLocaleTimeString('en-UA', {timeZone: 'Europe/Kiev', ...options}) + '</p>';
+      } else if(phoneCode === '379') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-va"></span> Vatican City  '+'<p>Vatican City Time: ' + currentTime.toLocaleTimeString('it-VA', {timeZone: 'Europe/Vatican', ...options}) + '</p>';
+      } else if(phoneCode === '213') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-dz"></span> Algeria  '+'<p>Algeria Time: ' + currentTime.toLocaleTimeString('ar-DZ', {timeZone: 'Africa/Algiers', ...options}) + '</p>';
+      } else if(phoneCode === '244') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ao"></span> Angola  '+'<p>Angola Time: ' + currentTime.toLocaleTimeString('pt-AO', {timeZone: 'Africa/Luanda', ...options}) + '</p>';
+      } else if(phoneCode === '247') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ac"></span> Ascension Island  '+'<p>Ascension Island Time: ' + currentTime.toLocaleTimeString('en-AC', {timeZone: 'Atlantic/St_Helena', ...options}) + '</p>';
+      } else if(phoneCode === '229') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bj"></span> Benin  '+'<p>Benin Time: ' + currentTime.toLocaleTimeString('fr-BJ', {timeZone: 'Africa/Porto-Novo', ...options}) + '</p>';
+      } else if(phoneCode === '267') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bw"></span> Botswana  '+'<p>Botswana Time: ' + currentTime.toLocaleTimeString('en-BW', {timeZone: 'Africa/Gaborone', ...options}) + '</p>';
+      } else if(phoneCode === '226') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bf"></span> Burkina Faso  '+'<p>Burkina Faso Time: ' + currentTime.toLocaleTimeString('fr-BF', {timeZone: 'Africa/Ouagadougou', ...options}) + '</p>';
+      } else if(phoneCode === '257') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-bi"></span> Burundi  '+'<p>Burundi Time: ' + currentTime.toLocaleTimeString('fr-BI', {timeZone: 'Africa/Bujumbura', ...options}) + '</p>';
+      } else if(phoneCode === '237') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cm"></span> Cameroon  '+'<p>Cameroon Time: ' + currentTime.toLocaleTimeString('en-CM', {timeZone: 'Africa/Douala', ...options}) + '</p>';
+      } else if(phoneCode === '238') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cv"></span> Cape Verde  '+'<p>Cape Verde Time: ' + currentTime.toLocaleTimeString('pt-CV', {timeZone: 'Atlantic/Cape_Verde', ...options}) + '</p>';
+      } else if(phoneCode === '236') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cf"></span> Central African Republic Time: '+'<p>Central African Republic Time: ' + currentTime.toLocaleTimeString('fr-CF', {timeZone: 'Africa/Bangui', ...options}) + '</p>';
+      } else if(phoneCode === '235') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-td"></span> Chad  '+'<p>Chad Time: ' + currentTime.toLocaleTimeString('fr-TD', {timeZone: 'Africa/Ndjamena', ...options}) + '</p>';
+      } else if(phoneCode === '269') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-km"></span> Comoros  '+'<p>Comoros Time: ' + currentTime.toLocaleTimeString('ar-KM', {timeZone: 'Indian/Comoro', ...options}) + '</p>';
+      } else if(phoneCode === '225') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ci"></span> Côte d\'Ivoire  '+'<p>Côte d\'Ivoire Time: ' + currentTime.toLocaleTimeString('fr-CI', {timeZone: 'Africa/Abidjan', ...options}) + '</p>';
+      } else if(phoneCode === '243') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cd"></span> Democratic Republic of the Congo  '+'<p>Democratic Republic of the Congo Time: ' + currentTime.toLocaleTimeString('fr-CD', {timeZone: 'Africa/Kinshasa', ...options}) + '</p>';
+      } else if(phoneCode === '253') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-dj"></span> Djibouti  '+'<p>Djibouti Time: ' + currentTime.toLocaleTimeString('fr-DJ', {timeZone: 'Africa/Djibouti', ...options}) + '</p>';
+      } else if(phoneCode === '20') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-eg"></span> Egypt  '+'<p>Egypt Time: ' + currentTime.toLocaleTimeString('ar-EG', {timeZone: 'Africa/Cairo', ...options}) + '</p>';
+      } else if(phoneCode === '240') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gq"></span> Equatorial Guinea  '+'<p>Equatorial Guinea Time: ' + currentTime.toLocaleTimeString('es-GQ', {timeZone: 'Africa/Malabo', ...options}) + '</p>';
+      } else if(phoneCode === '291') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-er"></span> Eritrea  '+'<p>Eritrea Time: ' + currentTime.toLocaleTimeString('ti-ER', {timeZone: 'Africa/Asmara', ...options}) + '</p>';
+      } else if(phoneCode === '268') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sz"></span> Eswatini  '+'<p>Eswatini Time: ' + currentTime.toLocaleTimeString('en-SZ', {timeZone: 'Africa/Mbabane', ...options}) + '</p>';
+      } else if(phoneCode === '251') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-et"></span> Ethiopia  '+'<p>Ethiopia Time: ' + currentTime.toLocaleTimeString('am-ET', {timeZone: 'Africa/Addis_Ababa', ...options}) + '</p>';
+      } else if(phoneCode === '241') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ga"></span> Gabon  '+'<p>Gabon Time: ' + currentTime.toLocaleTimeString('fr-GA', {timeZone: 'Africa/Libreville', ...options}) + '</p>';
+      } else if(phoneCode === '220') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gm"></span> Gambia  '+'<p>Gambia Time: ' + currentTime.toLocaleTimeString('en-GM', {timeZone: 'Africa/Banjul', ...options}) + '</p>';
+      } else if(phoneCode === '233') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gh"></span> Ghana  '+'<p>Ghana Time: ' + currentTime.toLocaleTimeString('en-GH', {timeZone: 'Africa/Accra', ...options}) + '</p>';
+      } else if(phoneCode === '224') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gn"></span> Guinea  '+'<p>Guinea Time: ' + currentTime.toLocaleTimeString('fr-GN', {timeZone: 'Africa/Conakry', ...options}) + '</p>';
+      } else if(phoneCode === '245') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-gw"></span> Guinea-Bissau  '+'<p>Guinea-Bissau Time: ' + currentTime.toLocaleTimeString('pt-GW', {timeZone: 'Africa/Bissau', ...options}) + '</p>';
+      } else if(phoneCode === '254') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ke"></span> Kenya  '+'<p>Kenya Time: ' + currentTime.toLocaleTimeString('en-KE', {timeZone: 'Africa/Nairobi', ...options}) + '</p>';
+      } else if(phoneCode === '266') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ls"></span> Lesotho '+'<p>Lesotho Time: ' + currentTime.toLocaleTimeString('en-LS', {timeZone: 'Africa/Maseru', ...options}) + '</p>';
+      } else if(phoneCode === '231') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-lr"></span> Liberia  '+'<p>Liberia Time: ' + currentTime.toLocaleTimeString('en-LR', {timeZone: 'Africa/Monrovia', ...options}) + '</p>';
+      } else if(phoneCode === '218') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ly"></span> Libya  '+'<p>Libya Time: ' + currentTime.toLocaleTimeString('ar-LY', {timeZone: 'Africa/Tripoli', ...options}) + '</p>';
+      } else if(phoneCode === '261') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mg"></span> Madagascar  '+'<p>Madagascar Time: ' + currentTime.toLocaleTimeString('fr-MG', {timeZone: 'Indian/Antananarivo', ...options}) + '</p>';
+      } else if(phoneCode === '265') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mw"></span> Malawi  '+'<p>Malawi Time: ' + currentTime.toLocaleTimeString('en-MW', {timeZone: 'Africa/Blantyre', ...options}) + '</p>';
+      } else if(phoneCode === '223') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ml"></span> Mali  '+'<p>Mali Time: ' + currentTime.toLocaleTimeString('fr-ML', {timeZone: 'Africa/Bamako', ...options}) + '</p>';
+      } else if(phoneCode === '222') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mr"></span> Mauritania  '+'<p>Mauritania Time: ' + currentTime.toLocaleTimeString('ar-MR', {timeZone: 'Africa/Nouakchott', ...options}) + '</p>';
+      } else if(phoneCode === '230') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mu"></span> Mauritius  '+'<p>Mauritius Time: ' + currentTime.toLocaleTimeString('en-MU', {timeZone: 'Indian/Mauritius', ...options}) + '</p>';
+      } else if(phoneCode === '262') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-yt"></span> Mayotte  '+'<p>Mayotte Time: ' + currentTime.toLocaleTimeString('fr-YT', {timeZone: 'Indian/Mayotte', ...options}) + '</p>';
+      } else if(phoneCode === '212') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ma"></span> Morocco  '+'<p>Morocco Time: ' + currentTime.toLocaleTimeString('ar-MA', {timeZone: 'Africa/Casablanca', ...options}) + '</p>';
+      } else if(phoneCode === '258') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-mz"></span> Mozambique  '+'<p>Mozambique Time: ' + currentTime.toLocaleTimeString('pt-MZ', {timeZone: 'Africa/Maputo', ...options}) + '</p>';
+      } else if(phoneCode === '264') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-na"></span> Namibia  '+'<p>Namibia Time: ' + currentTime.toLocaleTimeString('en-NA', {timeZone: 'Africa/Windhoek', ...options}) + '</p>';
+      } else if(phoneCode === '227') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ne"></span> Niger  '+'<p>Niger Time: ' + currentTime.toLocaleTimeString('fr-NE', {timeZone: 'Africa/Niamey', ...options}) + '</p>';
+      } else if(phoneCode === '234') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-ng"></span> Nigeria  '+'<p>Nigeria Time: ' + currentTime.toLocaleTimeString('en-NG', {timeZone: 'Africa/Lagos', ...options}) + '</p>';
+      } else if(phoneCode === '242') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-cg"></span> Republic of the Congo  '+'<p>Republic of the Congo Time: ' + currentTime.toLocaleTimeString('fr-CG', {timeZone: 'Africa/Brazzaville', ...options}) + '</p>';
+      } else if(phoneCode === '262') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-re"></span> Reunion  '+'<p>Reunion Time: ' + currentTime.toLocaleTimeString('fr-RE', {timeZone: 'Indian/Reunion', ...options}) + '</p>';
+      } else if(phoneCode === '250') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-rw"></span> Rwanda  '+'<p>Rwanda Time: ' + currentTime.toLocaleTimeString('en-RW', {timeZone: 'Africa/Kigali', ...options}) + '</p>';
+      } else if(phoneCode === '290') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sh"></span> Saint Helena  '+'<p>Saint Helena Time: ' + currentTime.toLocaleTimeString('en-SH', {timeZone: 'Atlantic/St_Helena', ...options}) + '</p>';
+      } else if(phoneCode === '239') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-st"></span> Sao Tome & Principe '+'<p> Sao Tome & Principe Time: ' + currentTime.toLocaleTimeString('pt-ST', {timeZone: 'Africa/Sao_Tome', ...options}) + '</p>';
+      } else if(phoneCode === '221') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sn"></span> Senegal  '+'<p>Senegal Time: ' + currentTime.toLocaleTimeString('fr-SN', {timeZone: 'Africa/Dakar', ...options}) + '</p>';
+      } else if(phoneCode === '248') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sc"></span> Seychelles  '+'<p>Seychelles Time: ' + currentTime.toLocaleTimeString('fr-SC', {timeZone: 'Indian/Mahe', ...options}) + '</p>';
+      } else if(phoneCode === '232') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-sl"></span> Sierra Leone  '+'<p>Sierra Leone Time: ' + currentTime.toLocaleTimeString('en-SL', {timeZone: 'Africa/Freetown', ...options}) + '</p>';
+      } else if(phoneCode === '252') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-so"></span> Somalia  '+'<p>Somalia Time: ' + currentTime.toLocaleTimeString('so-SO', {timeZone: 'Africa/Mogadishu', ...options}) + '</p>';
+      } else if(phoneCode === '27') {
+          timeDisplay.innerHTML =  '<p> <span class="flag-icon flag-icon-za"></span> South Africa  '+'<p>South Africa Time: ' + currentTime.toLocaleTimeString('en-ZA', {timeZone: 'Africa/Johannesburg', ...options}) + '</p>';
+      } else if(phoneCode === '211') {
+          timeDisplay.innerHTML =    '<p> <span class="flag-icon flag-icon-ss"></span> South Sudan  '+'<p>South Sudan Time: ' + currentTime.toLocaleTimeString('en-SS', {timeZone: 'Africa/Juba', ...options}) + '</p>';
+      } else if(phoneCode === '249') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sd"></span> Sudan  '+'<p>Sudan Time: ' + currentTime.toLocaleTimeString('ar-SD', {timeZone: 'Africa/Khartoum', ...options}) + '</p>';
+      } else if(phoneCode === '255') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-tz"></span> Tanzania '+'<p>Tanzania Time: ' + currentTime.toLocaleTimeString('sw-TZ', {timeZone: 'Africa/Dar_es_Salaam', ...options}) + '</p>';
+      } else if(phoneCode === '228') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-tg"></span> Togo  '+'<p>Togo Time: ' + currentTime.toLocaleTimeString('fr-TG', {timeZone: 'Africa/Lome', ...options}) + '</p>';
+      } else if(phoneCode === '216') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-tn"></span> Tunisia '+'<p>Tunisia Time: ' + currentTime.toLocaleTimeString('ar-TN', {timeZone: 'Africa/Tunis', ...options}) + '</p>';
+      } else if(phoneCode === '256') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ug"></span> Uganda  '+'<p>Uganda Time: ' + currentTime.toLocaleTimeString('en-UG', {timeZone: 'Africa/Kampala', ...options}) + '</p>';
+      } else if(phoneCode === '212') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-eh"></span> Western Sahara  '+'<p>Western Sahara Time: ' + currentTime.toLocaleTimeString('ar-EH', {timeZone: 'Africa/El_Aaiun', ...options}) + '</p>';
+      } else if(phoneCode === '260') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-zm"></span> Zambia  '+'<p>Zambia Time: ' + currentTime.toLocaleTimeString('en-ZM', {timeZone: 'Africa/Lusaka', ...options}) + '</p>';
+      } else if(phoneCode === '263') {
+          timeDisplay.innerHTML =   '<p> <span class="flag-icon flag-icon-zw"></span> Zimbabwe '+'<p>Zimbabwe Time: ' + currentTime.toLocaleTimeString('en-ZW', {timeZone: 'Africa/Harare', ...options}) + '</p>';
+      } else if(phoneCode === '54') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ar"></span> Argentina  '+'<p>Argentina Time: ' + currentTime.toLocaleTimeString('es-AR', {timeZone: 'America/Argentina/Buenos_Aires', ...options}) + '</p>';
+      } else if(phoneCode === '591') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-bo"></span> Bolivia  '+'<p>Bolivia Time: ' + currentTime.toLocaleTimeString('es-BO', {timeZone: 'America/La_Paz', ...options}) + '</p>';
+      } else if(phoneCode === '55') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-br"></span> Brazil  '+'<p>Brazil Time: ' + currentTime.toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo', ...options}) + '</p>';
+      } else if(phoneCode === '56') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-cl"></span> Chile  '+'<p>Chile Time: ' + currentTime.toLocaleTimeString('es-CL', {timeZone: 'America/Santiago', ...options}) + '</p>';
+      } else if(phoneCode === '57') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-co"></span> Colombia  '+'<p>Colombia Time: ' + currentTime.toLocaleTimeString('es-CO', {timeZone: 'America/Bogota', ...options}) + '</p>';
+      } else if(phoneCode === '593') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ec"></span> Ecuador  '+'<p>Ecuador Time: ' + currentTime.toLocaleTimeString('es-EC', {timeZone: 'America/Guayaquil', ...options}) + '</p>';
+      } else if(phoneCode === '500') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-fk"></span> Falkland Islands  '+'<p>Falkland Islands Time: ' + currentTime.toLocaleTimeString('en-FK', {timeZone: 'Atlantic/Stanley', ...options}) + '</p>';
+      } else if(phoneCode === '594') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gf"></span> French Guiana  '+'<p>French Guiana Time: ' + currentTime.toLocaleTimeString('fr-GF', {timeZone: 'America/Cayenne', ...options}) + '</p>';
+      } else if(phoneCode === '592') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gy"></span> Guyana  '+'<p>Guyana Time: ' + currentTime.toLocaleTimeString('en-GY', {timeZone: 'America/Guyana', ...options}) + '</p>';
+      } else if(phoneCode === '595') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-py"></span> Paraguay  '+'<p>Paraguay Time: ' + currentTime.toLocaleTimeString('es-PY', {timeZone: 'America/Asuncion', ...options}) + '</p>';
+      } else if(phoneCode === '51') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-pe"></span> Peru  '+'<p>Peru Time: ' + currentTime.toLocaleTimeString('es-PE', {timeZone: 'America/Lima', ...options}) + '</p>';
+      } else if(phoneCode === '597') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-sr"></span> Suriname  '+'<p>Suriname Time: ' + currentTime.toLocaleTimeString('nl-SR', {timeZone: 'America/Paramaribo', ...options}) + '</p>';
+      } else if(phoneCode === '598') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-uy"></span> Uruguay  '+'<p>Uruguay Time: ' + currentTime.toLocaleTimeString('es-UY', {timeZone: 'America/Montevideo', ...options}) + '</p>';
+      } else if(phoneCode === '58') {
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-ve"></span> Venezuela '+'<p>Venezuela Time: ' + currentTime.toLocaleTimeString('es-VE', {timeZone: 'America/Caracas', ...options}) + '</p>';
+          // Add more countries here
+  } else {
+      // Invalid input
+      timeDisplay.innerHTML = '<p>Please enter a valid country name or phone code.</p>';
+  }
+}
+
+function getPhoneCodeFromInput(input) {
+  // Add logic to extract phone code from input
+  // For simplicity, you can use a mapping of country names to phone codes
+  var countryToPhoneCode = {
+      "USA": "1",
+      "United Kingdom": "44",
+      "India": "91",
+      "Australia": "61",
+      "Afghanistan": "93",
+      "Armenia": "374",
+      "Azerbaijan": "994",
+      "Bahrain": "973",
+      "Bangladesh": "880",
+      "Bhutan": "975",
+      "Brunei": "673",
+      "Cambodia": "855",
+      "China": "86",
+      "Cyprus": "357",
+      "Egypt": "20",
+      "Georgia": "995",
+      "Hong Kong": "852",
+      "India": "91",
+      "Indonesia": "62",
+      "Iran": "98",
+      "Iraq": "964",
+      "Israel": "972",
+      "Japan": "81",
+      "Jordan": "962",
+      "Kazakhstan": "7",
+      "Kuwait": "965",
+      "Kyrgyzstan": "996",
+      "Laos": "856",
+      "Lebanon": "961",
+      "Macau": "853",
+      "Malaysia": "60",
+      "Maldives": "960",
+      "Mongolia": "976",
+      "Myanmar": "95",
+      "Nepal": "977",
+      "North Korea": "850",
+      "Oman": "968",
+      "Pakistan": "92",
+      "Palestine": "970",
+      "Philippines": "63",
+      "Qatar": "974",
+      "Saudi Arabia": "966",
+      "Singapore": "65",
+      "South Korea": "82",
+      "Sri Lanka": "94",
+      "Syria": "963",
+      "Taiwan": "886",
+      "Tajikistan": "992",
+      "Thailand": "66",
+      "Timor-Leste": "670",
+      "Turkey": "90",
+      "Turkmenistan": "993",
+      "United Arab Emirates": "971",
+      "Uzbekistan": "998",
+      "Vietnam": "84",
+      "Armenia": "374",
+      "Azerbaijan": "994",
+      "Belarus": "375",
+      "Bosnia and Herzegovina": "387",
+      "Bulgaria": "359",
+      "Croatia": "385",
+      "Cyprus": "357",
+      "Czech Republic": "420",
+      "Estonia": "372",
+      "Finland": "358",
+      "France": "33",
+      "Germany": "49",
+      "Greece": "30",
+      "Hungary": "36",
+      "Iceland": "354",
+      "Ireland": "353",
+      "Italy": "39",
+      "Yemen": "967",
+      "Kosovo": "383",
+      "Latvia": "371",
+      "Liechtenstein": "423",
+      "Lithuania": "370",
+      "Luxembourg": "352",
+      "North Macedonia": "389",
+      "Malta": "356",
+      "Moldova": "373",
+      "Monaco": "377",
+      "Montenegro": "382",
+      "Netherlands": "31",
+      "Norway": "47",
+      "Poland": "48",
+      "Portugal": "351",
+      "Romania": "40",
+      "Russia": "7",
+      "San Marino": "378",
+      "Serbia": "381",
+      "Slovakia": "421",
+      "Slovenia": "386",
+      "Spain": "34",
+      "Sweden": "46",
+      "Switzerland": "41",
+      "Turkey": "90",
+      "Ukraine": "380",
+      "Vatican City": "379",
+      "Algeria": "213",
+      "Angola": "244",
+      "Ascension Island": "247",
+      "Benin": "229",
+      "Botswana": "267",
+      "Burkina Faso": "226",
+      "Burundi": "257",
+      "Cameroon": "237",
+      "Cape Verde": "238",
+      "Central African Republic": "236",
+      "Chad": "235",
+      "Comoros": "269",
+      "Côte d'Ivoire": "225",
+      "Democratic Republic of the Congo": "243",
+      "Djibouti": "253",
+      "Egypt": "20",
+      "Equatorial Guinea": "240",
+      "Eritrea": "291",
+      "Eswatini": "268",
+      "Ethiopia": "251",
+      "Gabon": "241",
+      "Gambia": "220",
+      "Ghana": "233",
+      "Guinea": "224",
+      "Guinea-Bissau": "245",
+      "Kenya": "254",
+      "Lesotho": "266",
+      "Liberia": "231",
+      "Libya": "218",
+      "Madagascar": "261",
+      "Malawi": "265",
+      "Mauritania": "222",
+      "Mauritius": "230",
+      "Mayotte": "262",
+      "Morocco": "212",
+      "Mozambique": "258",
+      "Namibia": "264",
+      "Niger": "227",
+      "Nigeria": "234",
+      "Republic of the Congo": "242",
+      "Reunion": "262",
+      "Rwanda": "250",
+      "Saint Helena": "290",
+      "Sao Tome & Principe": "239",
+      "Senegal": "221",
+      "Seychelles": "248",
+      "Sierra Leone": "232",
+      "Somalia": "252",
+      "South Africa": "27",
+      "South Sudan": "211",
+      "Sudan": "249",
+      "Tanzania": "255",
+      "Togo": "228",
+      "Tunisia": "216",
+      "Uganda": "256",
+      "Western Sahara": "212",
+      "Zambia": "260",
+      "Zimbabwe": "263",
+      "Argentina": "54",
+      "Bolivia": "591",
+      "Brazil": "55",
+      "Chile": "56",
+      "Colombia": "57",
+      "Ecuador": "593",
+      "Falkland Islands": "500",
+      "French Guiana": "594",
+      "Guyana": "592",
+      "Paraguay": "595",
+      "Peru": "51",
+      "Suriname": "597",
+      "Uruguay": "598",
+      "Venezuela": "58"
+      
+      // Add more countries as needed
+  };
+
+  // Check if input is a phone code
+  if (/^\d+$/.test(input)) {
+      return input;
+  }
+
+  // Check if input matches a country name
+  var normalizedInput = input.trim().toLowerCase();
+  for (var country in countryToPhoneCode) {
+      if (country.toLowerCase() === normalizedInput) {
+          return countryToPhoneCode[country];
+      }
+  }
+
+  return null; // No matching phone code found
+}
 }
 </script>
 </head>
 <body>
 <div id="wrapper">
   <h1>Time Zone Display</h1>
-  <input type="text" id="phoneCode" placeholder="Enter phone code (e.g., 1 or 44)" oninput="updateTime()">
+  <input type="text" id="countryInput" placeholder="Enter country name or phone code" oninput="updateTime()">
   <div id="timeDisplay"></div>
 </div>
 </body>
