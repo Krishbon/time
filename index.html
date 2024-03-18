@@ -78,13 +78,18 @@ function updateTime() {
 } else if (phoneCode === '61') {
     // Handle Australia time zones
     timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-au"></span> Australia:' +
-        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
-        '<p>Australian Central Standard Time (ACST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
-        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Brisbane', ...options}) + '</p>' +
+        '<p>Australian Eastern Daylight Time (AEDT): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
+        '<p>Cocos Islands Time (CCT): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Indian/Cocos', ...options}) + '</p>' +
+        '<p>Christmas Island Time (CXT): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Indian/Christmas', ...options}) + '</p>' +
+        '<p>Australian Western Standard Time (AWST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth', ...options}) + '</p>' +
+        '<p>Australian Central Western Standard Time (ACWST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Eucla', ...options}) + '</p>' +
         '<p>Australian Central Standard Time (ACST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Darwin', ...options}) + '</p>' +
-        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Hobart', ...options}) + '</p>' +
-        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Melbourne', ...options}) + '</p>';
-} else if (phoneCode === '93') {
+        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Brisbane', ...options}) + '</p>' +
+        '<p>Australian Central Daylight Time (ACDT): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
+        '<p>Lord Howe Daylight Time (LHDT): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Lord_Howe', ...options}) + '</p>' +
+        '<p>Norfolk Island Time (NFT): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Pacific/Norfolk', ...options}) + '</p>';
+}
+ else if (phoneCode === '93') {
           // Handle Afghanistan time
           timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-af"></span> Afghanistan '+'<p>Afghanistan Time: ' + currentTime.toLocaleTimeString('en-AF', {timeZone: 'Asia/Kabul', ...options}) + '</p>';
       } else if (phoneCode === '966') {
