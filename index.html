@@ -74,17 +74,17 @@ function updateTime() {
           timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-gb"></span> United Kingdom '+'<p>UK Time: ' + currentTime.toLocaleTimeString('en-GB', {timeZone: 'Europe/London', ...options}) + '</p>';
         } else if (phoneCode === '91') {
     // Handle India time
-            timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-in"></span> India '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
-        } else if (phoneCode === '61') {
+    timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-in"></span> India '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
+} else if (phoneCode === '61') {
     // Handle Australia time zones
-            timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-au"></span> Australia:' +
-        '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
-        '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
-        '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Brisbane', ...options}) + '</p>' +
-        '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Darwin', ...options}) + '</p>' +
-        '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Hobart', ...options}) + '</p>' +
-        '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Melbourne', ...options}) + '</p>';
-      } else if (phoneCode === '93') {
+    timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-au"></span> Australia:' +
+        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
+        '<p>Australian Central Standard Time (ACST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
+        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Brisbane', ...options}) + '</p>' +
+        '<p>Australian Central Standard Time (ACST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Darwin', ...options}) + '</p>' +
+        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Hobart', ...options}) + '</p>' +
+        '<p>Australian Eastern Standard Time (AEST): ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Melbourne', ...options}) + '</p>';
+} else if (phoneCode === '93') {
           // Handle Afghanistan time
           timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-af"></span> Afghanistan '+'<p>Afghanistan Time: ' + currentTime.toLocaleTimeString('en-AF', {timeZone: 'Asia/Kabul', ...options}) + '</p>';
       } else if (phoneCode === '966') {
