@@ -77,7 +77,7 @@ function updateTime() {
           timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-in"></span> India '+'<p>India Time: ' + currentTime.toLocaleTimeString('en-IN', {timeZone: 'Asia/Kolkata', ...options}) + '</p>';
       } else if (phoneCode === '61') {
           // Handle Australia time zones
-          timeDisplay.innerHTML = '<p>AET: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
+          timeDisplay.innerHTML = '<p> <span class="flag-icon flag-icon-au"></span> Australia'+'<p>AET: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Sydney', ...options}) + '</p>' +
                                   '<p>ACT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Adelaide', ...options}) + '</p>' +
                                   '<p>AWT: ' + currentTime.toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth', ...options}) + '</p>';
       } else if (phoneCode === '93') {
